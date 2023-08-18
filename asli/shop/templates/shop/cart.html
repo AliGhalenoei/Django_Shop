@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">نام محصول</th>
+        <th scope="col">قیمت</th>
+        <th scope="col">تعداد</th>
+        <th scope="col">جمع</th>
+        <th scope="col">حذف</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}   
+      <tr>
+        <th scope="row">1</th>
+        <td>{{item.product}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.tedad}}</td>
+        <td>{{item.total_price}}</td>
+        <td><a href="{% url 'delete_cart' item.product.id %}">Delete</a></td>
+      </tr>
+      {%endfor%}
+
+      <tr>
+        <td> قابل پرداخت:</td>
+        <td>{{cart.Total_Price}}</td>
+        <td colspan="3"></td>
+        <td><a href="{% url 'create_checkout' %}" style="font-size: 15px;">CheckOut</a></td>
+      </tr>
+
+      
+{% endblock %}

@@ -1,0 +1,11 @@
+
+<h4>CheckOut</h4>
+    {{order.get_total}}
+
+<br><br><hr>
+
+<form action="{% url 'cupon' order.id%}" method="post">
+    {%csrf_token%}
+        {{form.as_p}}
+            <input type="submit" value="Apply">
+</form>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+    <br>
+    <div style="display: inline-block; width: 100%; border: solid 1px; border-radius: 10px; margin-left: 5px; padding: 10px;">
+            <img style="width: 500px; margin-left: 230px;" src="{{product.img.url}}" alt=""><br>
+            {% for img in product.detail_img.all %}
+            <img  style="width: 150px; margin-left: 130px;" src="{{img.select.url}}" alt="">
+            {%endfor%}
+            <br><br>
+            <h6 style="text-align: right;">{{product.name}} :نام محصول</h6><br>
+            <h6 style="text-align: right;">{{product.description}} : درباره محصول</h6><br>
+            <h6 style="text-align: right;">{{product.price}} : قیمت محصول</h6><br><br>
+
+            <form action="{% url 'add_cart' product.id %}" method="post">
+                {%csrf_token%}
+                    {{form.as_p}}
+                        <input type="submit" value="اضافه به سبد">
+            </form>
+
+    </div>
+    <br><br>
+    <div>
+        <h6 style="background-color: aqua; padding: 15px; border-radius: 10px; text-align: right;">محصولات پیشنهادی</h6>
+    </div>
+
+    {%  for random_product in random_products  %}
+        <div class="card" style="width: 10rem; border-radius: 10px; display: inline-block; margin-left: 10px; margin-top: 5px; margin-left: 30px;">
+            
+            <a href="{%  url 'detail_product' random_product.slug   %}"><img src="{{random_product.img.url}}" class="card-img-top" alt="..." style="width: 150px; "></a>
+            <div class="card-body">
+                <a href="#" class="card-title">{{random_product.name}}</a>
+            </div>
+
+        </div>
+    {%endfor%}
+    
+    <br><br><hr>
+
+    <div style="text-align: right; background-color: azure; padding: 10px;">
+        <form action="" method="post">
+            {%csrf_token%}
+                {{form_comment.as_p}}
+                    <input type="submit" value="ارسال" class="btn btn-primary" style="position: relative; left: -320px; top: -56px;">
+        </form>
+
+        {% for comment in comments %}
+            <div style="background-color: antiquewhite; margin-top: 10px; padding: 15px; border-radius: 15px;">
+                <small>:نظر داد  {{comment.user}}</small><br><br>
+                <h6>{{comment.body}}</h6>
+            </div>
+        {%endfor%}
+    </div>
+
+
+    
+
+
+{% endblock %}

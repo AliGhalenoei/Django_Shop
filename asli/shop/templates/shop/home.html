@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+
+<div style="width: 100%;">
+    <img style="width: 100%; height: 700px;" src="https://cdn1.vectorstock.com/i/1000x1000/37/25/set-poster-online-store-with-icons-vector-28833725.jpg" alt="">
+</div> <br>
+
+    <div style="width: 100%; background-color: aqua; padding: 15px;"> <a href="{% url 'list_product' %}" class="btn btn-primary" style="margin-left: 20px;"  >مشاهده همه</a> <h5 style="display: inline-block; float: right;">محصولات تازه فروشگاه</h5> </div><br>
+
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display: inline-block; margin-left: 30px; margin-top: 7px;">
+            <a href="{% url 'detail_product' product.slug %}"> <img  src="{{product.img.url}}" class="card-img-top" alt="..."> </a>
+            <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">{{product.price}}</a>
+            </div>
+        </div>
+    {%endfor%}
+    <br><br>
+    <div style="width: 100%; background-color: aqua; padding: 15px;"> <a href="{% url 'list_laptop_product' %}" class="btn btn-primary" style="margin-left: 20px;"  >مشاهده همه</a> <h5 style="display: inline-block; float: right;">لب تاپ های جدید</h5> </div><br>
+
+    {% for laptop in laptops %}
+        <div class="card" style="width: 18rem; display: inline-block; margin-left: 30px;">
+            <a href="{% url 'detail_product' laptop.slug %}"> <img  src="{{laptop.img.url}}" class="card-img-top" alt="..."> </a>
+            <div class="card-body">
+            <h5 class="card-title">{{laptop.name}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">{{laptop.price}}</a>
+            </div>
+        </div>
+    {%endfor%}
+    <br><br>
+
+    <div style="width: 100%; background-color: aqua; padding: 15px;"> <a href="{% url 'list_mobail_product' %}" class="btn btn-primary" style="margin-left: 20px;"  >مشاهده همه</a> <h5 style="display: inline-block; float: right;">موبایل های بروز</h5> </div><br>
+    
+    {% for mobail in mobails %}
+        <div class="card" style="width: 18rem; display: inline-block; margin-left: 30px;">
+            <a href="{% url 'detail_product' mobail.slug %}"> <img  src="{{mobail.img.url}}" class="card-img-top" alt="..."> </a>
+            <div class="card-body">
+            <h5 class="card-title">{{mobail.name}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">{{mobail.price}}</a>
+            </div>
+        </div>
+    {%endfor%}
+    <br><br>
+
+    <div style="width: 100%; background-color: aqua; padding: 35px;"><h5 style="display: inline-block; float: right; position: relative;top: -15px;">محصولات بر اساس برند</h5> </div><br>
+
+    {% for sub in category_sub %}
+        <a href="{% url 'filter_category' sub.slug %}"> <img style="width: 200px; margin-left: 33px;" src="{{sub.img_brand.url}}" alt=""> </a>
+    {%endfor%}
+    <br><br><hr>
+
+    <div style="background-color: aquamarine; width: 100%; height: 300px; padding: 10px;">
+        <div style="background-color: beige; width: 600px; text-align: right;float: right;">
+            <h6>فروشگاه بزرگ کالاوب در ایران</h6>
+            <p>یک خرید اینترنتی مطمئن، نیازمند فروشگاهی است که بتواند کالاهایی متنوع، باکیفیت و دارای قیمت مناسب را در مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت کالا هم داشته باشد؛ ویژگی‌هایی که فروشگاه اینترنتی دیجی‌کالا سال‌هاست بر روی آن‌ها کار کرده و توانسته از این طریق مشتریان ثابت خود را داشته باشد.</p>
+    
+        </div>
+        <div style="display: inline-block; border: solid 1px;"><img style="width: 150px;" src="https://www.digikala.com/statics/img/png/rezi.webp" alt=""></div>
+        <div style="display: inline-block; border: solid 1px; height: 159px;"><img style="width: 150px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACCCAMAAAC6s/yfAAACTFBMVEUAAAABsfYAsfclJU0mIkoDq/EpJksCre8mJlEKpfAqKlQBru8Cru4oKFIBru8BsvYoKFNjUFUqKlQAufeVd2opKVNfT0V0kaIBr/EoKFQlJUwpKVMoKFIqKlMBr/EqKlQnJ1ACsvMqKlUoKFMmJlAoKFIBsPICr+8pKVMqKlMmJlECru8CsPIpKVItLVgpKVIBtPEBs/IBr+4BsO8CsPQCsPApKVIpKVMAt/WUfHQCru4lJVEBrfInJ1EBtPECr+8uLlgCs/QAru8BtvYBre4Cre4At/QBrO8AwvwBsPQCsPIwMFwpKVJvRTejdF4Avf+UenYqKlZnSkAAt/0AvPBvNB9iQTOShX0OrOM5ocselL5sPS1UlbApKVKTfHSbdGetbFQcpdY2iqhMZW5ojJtBfZI8cIOFgYFnRTqfdWZmQTMAw/UEpd1TNy5bVVQAue51MRoAyv+aw9KTfHOvaU+CtckAmcttjJRJeH8Br/BXWVuBgoX///+DhYhaW1xrbHADru0Aqe6DgYNdXmA/QEJkZmgAoOxVVVdvcXQAuf9zdnkAsvAAnOvMzM0ApO5SXmRJS005Oj14hYzh4eKam5x9foAAtvp3en5ERUcBsfXa2dlPUFIAxP/29vaaeGtbVFP4/P3T09Px+/+IiYtnQja8vb5iTUfw8PCrrK0yMzbk9/2S2flIu/PGxcW1traKfXplSD8Av/9ryPUdrO/q6eqTlJXP7v3++/l+zvZgwvSgoaO35Pqm3/kxs/PE6vyjqayMjY+Hb2bY8/wrKy3PZjb3AAAAeXRSTlMABp0vFSIM0T8PvmtOUa31YCLEpNCwzSvhZx2WSMnwpDgcrVoobTzpz7Yj+EfcnoxixLemNBbn1Sb+hYN9fSyRidTAsJh0WlZKyIt5da93ajfz1o2EcjAW/v7+TP7835hR/v7+/f397Oeyk3X+/urmk4n+waL+/a6uKPrPEwAADClJREFUaN7slc9L22AYx98EshIijqFs7ymQS3NoD0naQFdKS3//uGxMYbqbmxsDB7LT9rge8u4QKCnxVhCKFhEPWtBWEEvVg3/Z3rRWqzas1rYnP7cEyqfv83y/b9Azz7igp2SWQ9NnRgMANYOmjDdggSYEAAJ+NEW4sAw4zSNGwIYYi6IpwSseIKkgQhJC0ZgP4gKPpgDjnwXQcjRcYS2sI0QfLW2GQZMmmBLpERnEdMKlZemrjAd8rBdNFC6CAYc5Gi5WBgfZMUr07friBKvFZFQANuiEC0MPXAjROcREw/NORxOB8bIiJLIM0gUV+skLzqqTYCRzk1i1NyVDXOERn9F8cBeflqHvlbxBBz9uNReRLTks0ZMFRHiI6NwjehqDPN5WM1kVwIlRaBHDQGi4nFWzAB6FH+P96IOEU1VFvTtlo3/eqsB3SzbnH9f9iC2c1ntTdkfUqJFX4uOZtyR4QCxEu+H6H3KKroNbXCd4TXpqcxMAySD10+YOAy5wCEVZAnnlKfkOBgzwZJmOf1hUx5jLA8yOfIuGChhwulOhe1MmD8NFbufdqZbgVCs0ilZf88BL56fR2ODlGkBcVx10mi8CDj921d1eBDofgDgMhtim7abGEanbavVxrZb8YdnI5zrNddOadr1ZJ+YDNbldNeNPgBgLcsPHbEb1+RYkJ1yim7Z8cna1e3V4UqbqgYhOuPS0CKzCDS3OYkjqiPvpViHbJM3LWrFYrJ02wbTd5r1AjSwkIqHhT+x5yTIvfv9oNLbAgdw7Lmm1d4tdau0mGajeKpWWfn1ECzArcI8Rz/Gvvm9+tqpU3Y8FpGzXz6n2ht123eyqjT5tpbS1/Gf+PWJHEH84Pv7yqVEtAenTmubF4cG1sqc/OLww+1dtQKVUWV59uz3/ZiTx6439vf1vK41q5VprgVk2zk57Qz5v3fyF07P+lNEpr6webR/9HVW8ubFzvLfzdanaqAABC+yy3WrXrl2XTbNsti6LvcfWP9rKbqdtIIjCD9QnyKugXiHRK7hBaiW8sddkvYlZErDjODZ2SDHBxKlIqBBp1KhSSHmxzvhng8Rd8R5ZuVhH/jRzZs7CW/iPaQL20+fH8bjVJ/9dMej73Z0GVp+dgLndnbl/sURcKtmA2z8P7S4Ujeb2x+NHQkjrI+BLQIPVw9EVQH7sTO0CBCeti5bvTk9zcxH7QTCSc6u/nTy9rS1vKzzQ/vauD7+eTg+hy40W+TAYhVYfOV9vq8X9DTBkos5L58uXt8dii9h6wCj351zOb7uNvDcCqzHIUNHWJnp9YEOzjKSw8eGiDea+vzFKq6MWrRvcg8+uNnsXZ8NzGVFm8QuBMbzYO14hmFBCagVrOXjifsGtLpCSjrG8zzNlYNDy6OhyH9BXVYyaeWCYn/vb7eImB9tKwIMwxAAfVgFuFrHcbzQeabZSCnaMPMBHgDZBQ4xlDAzKNk21YEjRewjww9FomJuLgUEE58uoAFNlFRsa3h2dA3OE5vrjhh5QTtJpE+XpsE6KwFp5d1zuneNt0CI2F5nXLNQL1HksAzw+0KHLAaeDpFnKW1JfJ1L1g1Gd+y12merpdYm9nhPgqqtYivo2JYvnCpsMbOSqG67qLGaUSHNvknVABeIUV2wYjsvWkTQ3C6jt67oysFOCDRZbVJo7TScUplkgWgl4tbRiVpzEoe/JmXqBaomgAh5FHk9eXcaM/IBHlbkDygM9gOyaJ2sbyCrWKdVe3Q5jcOCKos/exmb2hFDu43hfb+yg3opdVoREpFuz0ICqwzhFcxcBo2QiOF0Xjfdqz+pOrzR0wd2Zw7hh8dRLlpz7E5/zlznUX4DrzGqcJUuvgsLbGDM35sxybB8txRuiejdd19jq99vjDeKZpWlhB7A2D96EyAsNah0uJDsziySr6hIijht2bIhqIUPkxssEF3ptWS3JHXemDeTupsJymS2WvaoNzwudy6iuD4xkFrsuz54rUMZifT6tzIUQoUHdkSnRkM+WSCtYsoiq+nsDQQMcZyVgRGuh65Bys6SitaACsfWA/7FrRq9JxVEcP787sVy0NerBtXFJiLvgSuVUsiXC2tqm4BZubg8DG/RQFkRRL15JfzpFqYebRoT4ICGsfOmtv6B/rHOul5r87hD16l76PvggF778zsfz83K+Zz/xVBN0fFwpdZpd1H/hfiG4om+2nhpiBiIxZ/xE062sm51O+ecpuOXyV0vb+v13BxDjgxhvLmX8LphLJlqiM/3KPv2ufcC7ijr3Vx5bqJ218C2mtudozuUbZM4VVbmEj++/fq5ZWudKnVL72/fPP6rlarZ9xnEf05gbJ6IDnDiovHQXVncYwGH8RNctUddquXabXrKsbdNHAOxuNCPvRTwMBpAXZ+RrGwCOZPyseteaVbK1UPHt9gHAFmZgQ8SdbPNhoXFVAURNfSVaa5VyluCKMuAGJJVjFDRkDlKYfUOoX7zSRFW0quV5nz1BuKFdmdN0f0hFYioGKi5C3RKNK3k0FqtMcHdWM3w9MFpKzRu+LUKd0PS+xvXiNYLrNeGOJBeinkXUWO9Eq49x0YQrY85nQ6QbpMjLRC0YC3CDYTenRMIWhWJywd3t6py1MVU5bcC98FG1MVBlygynZRMTtWiMg1qjczE6WfYyu1cwVH/AvEV7jMk21W0hhHvJAzbL88hdkPc8WG9E3WtMcI0NhSWhc23Kc1XjAmeHcV03jem46SNG13KDr0dgTPIu0waCgRqtydiEq0ic096CIFvrvWv+YWpo3K1yDKts1UJ2b76Y9W7l31OV6X6UJQXGLeaVZCM5dCbjWGW2scZVv00t1D9pLRioKaGeUccKV7xFuSqFwEOdiy00QUVwISQa82WWViIwYdFeEW1TTV4s7F5xwXlICStwLmKMwX/ZLOY0i+pwsL7PQo9GwzF1+4Zhv7iw4ABBjovwT87LN+G05q/A8HLcuffACXB9+tb8FOs5FHPix+K0+cWfdstmRVIYisInJIQQCIRAFvkjYhRUUHe6EKH2VZt6gH7/1xjtmukZmKnqmc2s+kNIbnI5xyuRmyGKKILCr0wX/D2c+h+WzalcpbmuAC57hhP9UQVrFaASIb6hDKqebfswJsN3CcIG8l3oU8h1vJJj8IRd1pmBDbSqmOcY6vAuYpaCAz4Qsq8K0YAFKQNlTSXow7gkc4yMgc2pEFTZKIKXcI7S7xVw2FTFbkvErYVVPHvAT5qD7Plm9JmQGNDKJkoglnmZgOvG3o2bHGwNXFpM/VZTTNZF8tr3prAZxU7dXjgrurmxUoxTGR2l1I0UPAc1juUIlmNF2Fl1Fa1Uvlta1fPDmNr91gth8r4WIXdqMqUcr2DBQU3h0gCsjj7LZbQydVJ2azJSGjkAyoxyP6ZdEDZJqYcsDy7XY0UKdok42I1ZjJF5HK0ZTT+OsqavK542nOdXA1RGoLzVpfF68Iqq1jk94EA4j0o7RZhuz0/odas9SHGu+jiY3C63wnjR2j2etsFLrp0S4iIjVTJ7KsJd4M/QIp6fFy/KmvFPsGlZlk7R/p4oyffVPRNvzWQZnqDvi6X4N8j57wCN4MAgPJ7BPfPk6WZFOb744osv/jfEc5AnW79f54T2eAnXguCvoLV40gUazfATpj2JVzu9NPY6SP2Xxs1M58DxB6KkpyH5nicp6xbF8IKzuzb4FHL225MwE1acowBXAg+oprEe0Lh6fjh7W5HWqPepE8+qyJnjU9zanwKFbhdQa6wUmMckHgp90ip71qe3tysApkQtgFsXAX4ZpQKoenhEBRIpi6yKBKyfXjsPFUgd+JmU2tsGMJHfCuS+zRyRoc2UxMx9KrI+X4/atqYA1NSgsmI2gLMPi5CBqR2mxgUAZGpfOuuJc2vFmdNr1zvVZrOGbdV74JARW++YSG07WinCFaBZ97vSqu00mr5sHRDlVrTWqhuFWuU8Bru2RSvbD3hBmwnUVl8JYFsfUupsdGk1JimgUxC3uaa7POLO9BFo6qhrmUx31q1DMgC7rOZI6GRv61yvdU69TIfQ64qLpAAuEmDGgVeiAUCrQUUA5nYGdwoqBh6DBqC6AY0QlfA4ICYB4FScK4wLcSgcIW+OkJLPrlzWmtG1crHsFLE7PtCLsXIJ7CM5m3v4qadsWgvemQO++AL4Buyfl5n6z7G3AAAAAElFTkSuQmCC" alt=""></div>
+        
+    
+    </div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+    <br><br>
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display: inline-block; margin-left: 30px; margin-top: 5px;">
+            <a href="{% url 'detail_product' product.slug %}"> <img  src="{{product.img.url}}" class="card-img-top" alt="..."> </a>
+            <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">{{product.price}}</a>
+            </div>
+        </div>
+    {%endfor%}
+    
+        <br><br>
+
+<!-- Pagination -->
+{% if products.has_other_pages %}
+        <nav aria-label="Page navigation example" style="margin-left: 400px;">
+            <ul class="pagination">
+                {% if products.has_previous%}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{products.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {%endif%}
+            
+            
+                {% for page in products.paginator.page_range %}
+                    {% if products.number == page %}
+                        <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                    {%endif%}
+            
+                {%endfor%}
+                
+                {% if products.has_next%}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{products.next_page_number}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {%endif%}
+            </ul>
+        </nav>
+{%endif%}
+
+{% endblock %}

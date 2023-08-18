@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style=" background-color: #f8f9fd;">
+
+    <div style="background-color: #f8f9fd;  width: 45%; margin-left: 250px; margin-top: 10px; border-radius: 10px; height: 680px; box-shadow: 0 0 10px black;">
+        <div>
+            <img src="https://mizbanfa.net/blog/wp-content/uploads/2018/02/loginpress.png" alt="" style="width: 447px; border-radius: 0px 0px 8px 8px; height: 250px;">
+        </div><br>
+        <h3 style="margin-left: 28px;">Login</h3>
+        
+        <form action="" method="post">
+            {%csrf_token%}
+            <input type="text" placeholder="شمارخ تلفن" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="phone"><br>
+            <input type="text" placeholder="شمارخ تلفن" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="password"><br>
+            <input type="submit" placeholder="شمارخ تلفن" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;"><br>
+
+            <a href="{% url 'password_reset_form' %}" style="text-decoration: none; color: gray; float: right; margin-right: 27px;">رمزت یادت رفته؟</a>
+            <a href="{% url 'singup' %}" style="text-decoration: none; color: gray; float: left; margin-left: 27px;">  ساخت اکانت</a>
+        </form>
+    </div>
+    
+</body>
+</html>

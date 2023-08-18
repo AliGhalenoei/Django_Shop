@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'cart' %}">سبدمن {{show_cart|length}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              دسته بندی ها
+            </a>
+            <ul class="dropdown-menu">
+              {% for sub in category_not_sub %}
+              <li><a class="dropdown-item" href="{% url 'filter_nav' sub.slug %}">{{sub.name}}</a></li>
+              {%endfor%}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'call_me' %}" class="nav-link" >تماس با ما</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search" action="{% url 'search_product'%}" method="get" name="ss">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>

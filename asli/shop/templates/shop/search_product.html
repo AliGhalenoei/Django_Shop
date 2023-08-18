@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display: inline-block; margin-left: 30px; margin-top: 7px;">
+            <a href="{% url 'detail_product' product.slug %}"> <img  src="{{product.img.url}}" class="card-img-top" alt="..."> </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">{{product.price}}</a>
+                </div>
+        </div>
+    {%endfor%}
+
+{% endblock %}

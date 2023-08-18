@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style=" background-color: #f8f9fd;">
+
+    <div style="background-color: #f8f9fd;  width: 45%; margin-left: 250px; margin-top: 10px; border-radius: 10px; height: 800px; box-shadow: 0 0 10px black;">
+        <div>
+            <img src="https://mizbanfa.net/blog/wp-content/uploads/2018/02/loginpress.png" alt="" style="width: 447px; border-radius: 0px 0px 8px 8px; height: 250px;">
+        </div><br>
+        <h3 style="margin-left: 28px;">Singup</h3>
+        
+        <form action="" method="post">
+            {%csrf_token%}
+            <input type="text" placeholder="شماره تلفن" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="phone"><br>
+            <input type="text" placeholder=" ایمیل" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="email"><br>
+            <input type="text" placeholder=" نام کاربری" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="username"><br>
+            {% if password != password2 %}
+                <h6>رمز ها با هم مطابقت ندارد</h6>
+            {% else %}
+            <input type="text" placeholder=" رمزعبور" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="password"><br>
+            <input type="text" placeholder=" تکرار رمز عبور" style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;" name="password2"><br>
+            {% endif %}
+            <input type="submit" placeholder=" " style="height: 48px; width:400px ; border: #ced4da 1px; display: block; border-radius: 7px; margin-left: 25px;"><br>
+
+            
+            <a href="#" style="text-decoration: none; color: gray; float: left; margin-left: 27px;">   اکانت دارم</a>
+        </form>
+    </div>
+    
+</body>
+</html>
